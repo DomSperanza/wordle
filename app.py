@@ -7,13 +7,19 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
 from word_list import word_list
+from wonderwords import RandomWord
+
+r = RandomWord()
+
 
 
 
 def generate_hidden_word(word_length):
-    all_words = word_list()
-    valid_words = [word for word in all_words if len(word) == word_length]
-    return random.choice(valid_words)
+    #all_words = word_list()
+    #valid_words = [word for word in all_words if len(word) == word_length]
+    #return random.choice(valid_words)
+    my_word = r.word(word_min_length=word_length, word_max_length=word_length)
+    return my_word
 
 def generate_wordle(hidden_word, num_rows):
     fig = make_subplots(rows=num_rows, cols=word_length, specs=[[{'type': 'domain'}]*word_length]*num_rows)
